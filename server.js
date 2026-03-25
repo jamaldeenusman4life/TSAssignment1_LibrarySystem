@@ -1,20 +1,19 @@
 import "dotenv/config";
 import express from "express";
 import connectDB from "./config/database.js";
-/*import authorRoutes from "./routes/authorRoutes.js";
+import authorRoutes from "./routes/authorRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
 import attendantRoutes from "./routes/attendantRoutes.js";
 
+const app = express();
 
 app.use(express.json());
 
 app.use("/api/authors", authorRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/students", studentRoutes);
-app.use("/api/attendants", attendantRoutes);*/
-
-const app = express();
+app.use("/api/attendants", attendantRoutes);
 
 const PORT = process.env.PORT || 5500;
 
