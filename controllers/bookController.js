@@ -107,4 +107,37 @@ export const borrowBook = async (req, res) => {
   }
 };
 
-export default { createBook, getBooks, getBookById, updateBook, deleteBook };
+export const returnBook = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
+    if (book.status === "IN") {
+      return res.status(400).json({ error: "Book is not currently borrowed" });
+    }
+
+    book.status = "IN";
+    book.borrowedBy = null;
+    book.issuedBy = null;
+    book.returnDate = null;
+
+    await book.save();
+    return res
+      .status(200)
+      .json({ message: "Book returned successfully", data: book });
+  } catch (error) {
+    res.status(500).json({ message: error.message || "Failed to return book" });
+  }
+};
+
+export default {
+  createBook,
+  getBooks,
+  getBookById,
+  updateBook,
+  deleteBook,
+  borrowBook,
+  returnBook,
+};
