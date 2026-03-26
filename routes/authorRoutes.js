@@ -10,14 +10,14 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/authors", createAuthor);
+router.post("/", createAuthor);
 
-router.get("/authors", getAuthors);
+router.get("/", getAuthors);
 
-router.get("/authors/:id", getAuthorById);
+router.get("/:id", getAuthorById);
 
-router.put("/authors/:id", updateAuthor);
+router.put("/:id", updateAuthor);
 
-router.delete("/authors/:id", deleteAuthor);
+router.delete("/:id", deleteAuthor);
 
 export default router;

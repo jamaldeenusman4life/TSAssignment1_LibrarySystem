@@ -22,11 +22,11 @@ export const getAuthors = async (req, res) => {
 
 export const getAuthorById = async (req, res) => {
   try {
-    const attendant = await Author.findById(req.params.id);
-    if (!attendant) {
+    const author = await Author.findById(req.params.id);
+    if (!author) {
       return res.status(404).json({ error: "Author not found" });
     }
-    res.status(200).json(Author);
+    res.status(200).json(author);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch author" });
   }

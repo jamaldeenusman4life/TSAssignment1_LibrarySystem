@@ -11,18 +11,18 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/books", createBook);
+router.post("/", createBook);
 
-router.get("/books", getBooks);
+router.get("/", getBooks);
 
-router.get("/books/:id", getBookById);
+router.get("/:id", getBookById);
 
-router.put("/books/:id", updateBook);
+router.put("/:id", updateBook);
 
-router.delete("/books/:id", deleteBook);
+router.delete("/:id", deleteBook);
 
-router.post("/books/:id/borrow", borrowBook);
+router.post("/:id/borrow", borrowBook);
 
-router.post("/books/:id/return", returnBook);
+router.post("/:id/return", returnBook);
 
 export default router;

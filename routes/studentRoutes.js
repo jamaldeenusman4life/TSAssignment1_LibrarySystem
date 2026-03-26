@@ -7,10 +7,10 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/students", createStudent);
+router.post("/", createStudent);
 
-router.get("/students", getStudents);
+router.get("/", getStudents);
 
-router.get("/students/:id", getStudentById);
+router.get("/:id", getStudentById);
 
 export default router;

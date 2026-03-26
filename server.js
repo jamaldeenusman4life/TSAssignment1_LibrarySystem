@@ -10,10 +10,10 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/api/authors", authorRoutes);
-app.use("/api/books", bookRoutes);
-app.use("/api/students", studentRoutes);
-app.use("/api/attendants", attendantRoutes);
+app.use("/authors", authorRoutes);
+app.use("/books", bookRoutes);
+app.use("/students", studentRoutes);
+app.use("/attendants", attendantRoutes);
 
 const PORT = process.env.PORT || 5500;
 
@@ -27,7 +27,7 @@ const startServer = async () => {
     });
 
     app.listen(PORT, () => {
-      console.log(`Server is running on port : ${PORT}`);
+      console.log(`Server is listening on http://localhost:${PORT}`);
     });
   } catch (error) {
     console.log("MongoDB connection failed!", error);
