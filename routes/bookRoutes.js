@@ -1,3 +1,4 @@
+import express from "express";
 import {
   createBook,
   getBooks,
@@ -7,7 +8,6 @@ import {
   borrowBook,
   returnBook,
 } from "../controllers/bookController.js";
-import express from "express";
 
 const router = express.Router();
 

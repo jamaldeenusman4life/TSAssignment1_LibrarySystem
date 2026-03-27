@@ -1,19 +1,35 @@
 import Author from "../models/Author.js";
 
 export const createAuthor = async (req, res) => {
+  const { name, bio } = req.body;
+
+  if (!name || !bio) {
+    return res
+      .status(400)
+      .json({ message: "Author name and bio are required!" });
+  }
+
   try {
-    const { name, bio } = req.body;
-    const newAuthor = new Author({ name, bio });
-    await newAuthor.save();
-    res.status(201).json(newAuthor);
+    const newAuthor = await Author.create({ name, bio });
+
+    return res
+      .status(201)
+      .json({ message: "Author created successfully", author: newAuthor });
   } catch (error) {
-    res.status(500).json({ error: "Failed to create author" });
+    return res
+      .status(500)
+      .json({ message: "Failed to create author", err: error.message });
   }
 };
 
 export const getAuthors = async (req, res) => {
   try {
     const authors = await Author.find();
+
+    if (!authors) {
+      return res.status(404).json({ message: "Author not found" });
+    }
+
     res.status(200).json(authors);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch authors" });
@@ -21,43 +37,71 @@ export const getAuthors = async (req, res) => {
 };
 
 export const getAuthorById = async (req, res) => {
+  const id = req.params.id;
+
   try {
-    const author = await Author.findById(req.params.id);
+    const author = await Author.findById(id);
     if (!author) {
       return res.status(404).json({ error: "Author not found" });
     }
+
     res.status(200).json(author);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch author" });
+    res
+      .status(500)
+      .json({ error: "Failed to fetch author", error: error.message });
   }
 };
 
 export const updateAuthor = async (req, res) => {
+  const id = req.params.id;
+  const { name, bio } = req.body;
+
   try {
-    const { name, bio } = req.body;
-    const updatedAuthor = await Author.findByIdAndUpdate(
-      req.params.id,
-      { name, bio },
-      { new: true },
-    );
-    if (!updatedAuthor) {
+    const author = await Author.findById(id);
+    if (!author) {
       return res.status(404).json({ error: "Author not found" });
     }
-    res.status(200).json(updatedAuthor);
+
+    const changes = {};
+    if (name && name !== author.name) {
+      changes.name = name;
+      author.name = name;
+    }
+    if (bio && bio !== author.bio) {
+      changes.bio = bio;
+      author.bio = bio;
+    }
+
+    await author.save();
+
+    res.status(200).json({
+      message: "Author updated successfully",
+      changes,
+    });
   } catch (error) {
-    res.status(500).json({ error: "Failed to update author" });
+    res
+      .status(500)
+      .json({ message: "Failed to update author", error: error.message });
   }
 };
 
 export const deleteAuthor = async (req, res) => {
+  const id = req.params.id;
+
   try {
-    const deletedAuthor = await Author.findByIdAndDelete(req.params.id);
+    const deletedAuthor = await Author.findByIdAndDelete(id);
     if (!deletedAuthor) {
       return res.status(404).json({ error: "Author not found" });
     }
-    res.status(200).json({ message: "Author deleted successfully" });
+
+    res
+      .status(200)
+      .json({ message: "Author deleted successfully", author: deletedAuthor });
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete author" });
+    res
+      .status(500)
+      .json({ error: "Failed to delete author", error: error.message });
   }
 };
 

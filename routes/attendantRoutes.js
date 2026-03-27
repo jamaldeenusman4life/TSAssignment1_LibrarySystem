@@ -1,8 +1,8 @@
+import express from "express";
 import {
   createAttendant,
   getAttendants,
 } from "../controllers/attendantController.js";
-import express from "express";
 
 const router = express.Router();
 
