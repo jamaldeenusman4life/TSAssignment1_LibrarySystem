@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import Author from "./Author.js";
-import Student from "./Student.js";
-import LibraryAttendant from "./LibraryAttendant.js";
 
 const bookSchema = new mongoose.Schema(
   {
@@ -12,26 +9,28 @@ const bookSchema = new mongoose.Schema(
     isbn: {
       type: String,
       unique: true,
+      required: true,
     },
     authors: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Author.modelName",
+        ref: "Author",
+        required: true,
       },
     ],
     status: {
       type: String,
-      enum: ["IN" || "OUT"],
+      enum: ["IN", "OUT"],
       default: "IN",
     },
     borrowedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Student.modelName",
+      ref: "Student",
       default: null,
     },
     issuedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "LibraryAttendant.modelName",
+      ref: "LibraryAttendant",
       default: null,
     },
     returnDate: {
