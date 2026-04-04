@@ -130,9 +130,7 @@ MongoDB has connected successfully
 
 ## 📚 API Documentation
 
-**Postman Collection:** [View and Test API](https://jamaldeenusman-9807282.postman.co/workspace/Usman-Jamaldeen's-Workspace~74a06f7f-fbcd-4736-8fe7-d50b792fa3bb/collection/52434386-45bfcf47-26b8-4e15-ad54-1dd365406798?action=share&source=copy-link&creator=52434386)
-
----
+## **Postman Collection:** [View and Test API]https://jamaldeenusman-9807282.postman.co/workspace/74a06f7f-fbcd-4736-8fe7-d50b792fa3bb/documentation/52434386-45bfcf47-26b8-4e15-ad54-1dd365406798
 
 ## 📊 Database Models
 
