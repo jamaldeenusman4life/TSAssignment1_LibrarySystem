@@ -12,6 +12,7 @@ A comprehensive RESTful API built with **Node.js**, **Express.js**, and **MongoD
 - [Setup Instructions](#setup-instructions)
 - [API Documentation](#api-documentation)
 - [Database Models](#database-models)
+- [Testing with Postman](#testing-with-postman)
 - [Features](#features)
 
 ---
